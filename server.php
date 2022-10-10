@@ -1,7 +1,7 @@
 <?php
 
 //definimos los recursos disponibles
-$allowedResourceTypes = [
+$allowedResourceType = [
 	'books',
 	'authors',
 	'genres',
@@ -36,15 +36,15 @@ $books = [
 header('Content-Type: application/json');
 
 //levantamos el id del recurso buscado
-$resourceId = array_key_exists('resource_id', $_GET) ? $_GET['resource_id'];
+$resourceId = array_key_exists('resource_id', $_GET) ? $_GET['resource_id'] : '';
 
 //generamos la respuesta asumiendo que el pedido es correcto
-switch (strtoupper($_SERVER['resource_id']) {
+switch (strtoupper($_SERVER['REQUEST_METHOD'])) {
 	case 'GET':
 		if (empty($resourceId)) {
 			echo json_encode($books);
 		} else {
-			if (array_key_exist($resourceId, $books) {
+			if (array_key_exists($resourceId, $books)) {
 				echo json_encode($books[$resourceId]);
 			}
 		}
