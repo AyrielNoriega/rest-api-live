@@ -8,7 +8,7 @@ $allowedResourceType = [
 ];
 
 //validamos que el recurso este disponible
-$resourceType = $_GET['resource_type'];
+$resourceType = isset($_GET['resource_type'])? : '';
 
 if (!in_array($resourceType, $allowedResourceType)){
 	die;
@@ -50,6 +50,11 @@ switch (strtoupper($_SERVER['REQUEST_METHOD'])) {
 		}
 	break;
 	case 'POST':
+		$json = file_get_contents('php://input');
+
+		$books[] = json_decode($json, true);
+		//echo array_keys($books)[count($books) - 1];
+		echo json_encode($books);
 	break;
 	case 'PUT':
 	break;
