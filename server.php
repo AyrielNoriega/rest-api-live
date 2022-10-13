@@ -4,7 +4,7 @@
 $allowedResourceType = [
 	'books',
 	'authors',
-	'genres',
+	'genres'
 ];
 
 //validamos que el recurso este disponible
