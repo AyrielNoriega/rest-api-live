@@ -13,6 +13,7 @@ if (preg_match('/\/([^\/]+)\/([^\/]+)/', $_SERVER["REQUEST_URI"], $matches)) {
     error_log( print_r($matches, 1) );
 
     require 'server.php';
+    
 } else {
 
     error_log('No matches');
