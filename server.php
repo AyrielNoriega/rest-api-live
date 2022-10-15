@@ -1,5 +1,25 @@
 <?php
 
+if (
+	!array_key_exists('HTTP_X_HASH', $_SERVER) ||
+	!array_key_exists('HTTP_X_TIMESTAMP', $_SERVER) ||
+	!array_key_exists('HTTP_X_UID', $_SERVER)
+) {
+	die;
+}
+
+list($hash, $uid, $timestamp) = [
+									$_SERVER['HTTP_X_HASH'],
+									$_SERVER['HTTP_X_TIMESTAMP'],
+									$_SERVER['HTTP_X_UID']
+								];
+$secret = 'clave secreta';
+
+$newHash = sha1($uid.$timestamp.$secret);
+
+if ($newHash !== $hash) {
+	die;
+}
 //definimos los recursos disponibles
 $allowedResourceType = [
 	'books',
